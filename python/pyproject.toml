@@ -1,0 +1,19 @@
+[project]
+name = "backend"
+version = "0.1.0"
+authors = [
+    {name = "Malick Abu Imran", email="daomalick225@gmail.com"},
+]
+
+[tool.pytest.ini_options]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

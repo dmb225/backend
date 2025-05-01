@@ -1,0 +1,5 @@
+-r test.txt
+pip==25.1
+mypy==1.11.2
+pre-commit==4.2.0
+ruff==0.11.7
