@@ -10,5 +10,13 @@
 ## command line interface
 - PYTHONPATH=. python src/presentation/cli.py
 
+## web server gateway inferface
+
+### flask
+- FLASK_APP=src/presentation/wsgi.py FLASK_CONFIG="development" flask run -h "0.0.0.0"
+
 ## Tests
 - pytest -svv
+
+# Endpoints
+- /users: Return the list of all users

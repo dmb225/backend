@@ -1,3 +1,6 @@
+from src.application.entities.user import User
+from src.application.requests.user import build_user_list_request
+from src.application.responses import ResponseSuccess
 from src.application.services.user import user_list
 from src.infrastructure.repositories.user import UserMem
 
@@ -24,7 +27,13 @@ users = [
     },
 ]
 
+request = build_user_list_request()
 repo = UserMem(users)
-result = user_list(repo)
+response = user_list(repo, request)
 
-print([user.to_dict() for user in result])
+assert isinstance(response, ResponseSuccess)
+assert isinstance(response.value, list)
+for user in response.value:
+    assert isinstance(user, User)
+
+print([user.to_dict() for user in response.value])

@@ -36,3 +36,47 @@ def test_repository_list_without_parameters(user_dicts):
     users = [User.from_dict(i) for i in user_dicts]
 
     assert repo.list() == users
+
+
+def test_repository_list_with_age_equal_filter(user_dicts):
+    repo = UserMem(user_dicts)
+
+    users = repo.list(filters={"age__eq": 30})
+
+    assert len(users) == 1
+    assert users[0].age == 30
+
+
+@pytest.mark.parametrize("age", [30, "30"])
+def test_repository_list_with_age_less_than_filter(user_dicts, age):
+    repo = UserMem(user_dicts)
+
+    users = repo.list(filters={"age__lt": age})
+
+    assert len(users) == 2
+    assert set([u.age for u in users]) == {
+        20,
+        25,
+    }
+
+
+@pytest.mark.parametrize("age", [28, "28"])
+def test_repository_list_with_age_greater_than_filter(user_dicts, age):
+    repo = UserMem(user_dicts)
+
+    users = repo.list(filters={"age__gt": age})
+
+    assert len(users) == 2
+    assert set([u.age for u in users]) == {
+        30,
+        35,
+    }
+
+
+def test_repository_list_age_between_filter(user_dicts):
+    repo = UserMem(user_dicts)
+
+    users = repo.list(filters={"age__lt": 33, "age__gt": 27})
+
+    assert len(users) == 1
+    assert users[0].id == "913694c6-435a-4366-ba0d-da5334a611b2"

@@ -1,9 +1,8 @@
-from typing import Protocol
+from collections.abc import Mapping
+from typing import Optional, Protocol
 
 from src.application.entities.user import User
 
 
 class UserRepo(Protocol):
-    def list(self) -> list[User]:
-        """Return the list of all users."""
-        ...
+    def list(self, filters: Optional[Mapping[str, str]] = None) -> list[User]: ...
