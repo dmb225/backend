@@ -7,5 +7,8 @@
 
 # Run
 
+## command line interface
+- PYTHONPATH=. python src/presentation/cli.py
+
 ## Tests
 - pytest -svv

@@ -1,6 +1,6 @@
 import uuid
 
-from src.domain.user import User
+from src.application.entities.user import User
 
 
 def test_user_model_from_dict():

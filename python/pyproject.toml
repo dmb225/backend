@@ -5,6 +5,10 @@ authors = [
     {name = "Malick Abu Imran", email="daomalick225@gmail.com"},
 ]
 
+[tool.mypy]
+strict = true
+explicit_package_bases = true
+
 [tool.pytest.ini_options]
 addopts = "-v --tb=short"
 
