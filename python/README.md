@@ -17,6 +17,7 @@
 
 ## Tests
 - pytest -svv
+- pytest -svv --integration (includes integration tests)
 
 # Endpoints
 - /users: Return the list of all users

@@ -10,7 +10,13 @@ strict = true
 explicit_package_bases = true
 
 [tool.pytest.ini_options]
+minversion = "2.0"
 addopts = "-v --tb=short"
+python_files = ["test*.py"]
+norecursedirs = [".git", "requirements*"]
+markers = [
+    "integration: integration tests"
+]
 
 [tool.ruff]
 line-length = 100
