@@ -3,52 +3,42 @@ name: Python CI
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - 'python/**'
   pull_request:
     branches: [ "master" ]
-    paths:
-      - 'python/**'
 
 permissions:
   contents: read
 
 jobs:
-  setup:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
       - name: Set up Python 3.11
         uses: actions/setup-python@v3
         with:
           python-version: "3.11"
       - name: Install dependencies
-        run: pip install -r python/requirements/dev.txt
-
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: python
-    steps:
+        run: pip install -r requirements/dev.txt
       - name: Run ruff
         run: ruff check src
       - name: Run mypy
         run: mypy src
 
   test:
-    needs: setup
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: python
     steps:
+      - uses: actions/checkout@v4
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements/dev.txt
       - name: Run tests with coverage
         run: |
-          coverage run -m pytest -svv
-          coverage report
+          python manage.py test -- --integration
