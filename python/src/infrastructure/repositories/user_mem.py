@@ -9,7 +9,7 @@ class UserMem(UserRepo):
     def __init__(self, data: Iterable[dict[str, Any]]) -> None:
         self.data = data
 
-    def list(self, filters: Optional[Mapping[str, str]] = None) -> list[User]:
+    def get(self, filters: Optional[Mapping[str, str]] = None) -> list[User]:
         result = [User.from_dict(i) for i in self.data]
 
         if filters is None:

@@ -15,7 +15,7 @@ def user_list(
         return build_response_from_invalid_request(request)
     try:
         assert isinstance(request, UserListValidRequest)
-        users = repo.list(filters=request.filters)
+        users = repo.get(filters=request.filters)
         return ResponseSuccess(users)
     except Exception as exc:
         return ResponseFailure(ResponseTypes.SYSTEM_ERROR, exc)

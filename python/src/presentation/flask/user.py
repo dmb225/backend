@@ -6,7 +6,7 @@ from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseTypes
 from src.application.serializers.user import UserJsonEncoder
 from src.application.services.user import user_list
-from src.infrastructure.repositories.user import UserMem
+from src.infrastructure.repositories.user_mem import UserMem
 
 blueprint = Blueprint("user", __name__)
 

@@ -36,31 +36,31 @@ def users():
 
 def test_user_list_without_parameters(users):
     repo = mock.Mock()
-    repo.list.return_value = users
+    repo.get.return_value = users
 
     request = build_user_list_request()
     result = user_list(repo, request)
 
-    repo.list.assert_called_with(filters=None)
+    repo.get.assert_called_with(filters=None)
     assert result.value == users
 
 
 def test_user_list_with_filters(users):
     repo = mock.Mock()
-    repo.list.return_value = users
+    repo.get.return_value = users
 
     qry_filters = {"age__eq": 5}
     request = build_user_list_request(filters=qry_filters)
     response = user_list(repo, request)
 
     assert bool(response) is True
-    repo.list.assert_called_with(filters=qry_filters)
+    repo.get.assert_called_with(filters=qry_filters)
     assert response.value == users
 
 
 def test_user_list_handles_generic_error():
     repo = mock.Mock()
-    repo.list.side_effect = Exception("Just an error message")
+    repo.get.side_effect = Exception("Just an error message")
 
     request = build_user_list_request(filters={})
     response = user_list(repo, request)

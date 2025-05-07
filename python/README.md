@@ -1,3 +1,7 @@
+# Dependencies
+- postgresql-server-dev-all
+- libpq-dev
+
 # Installation
 - cd python
 - python3 -m venv venv
@@ -17,7 +21,7 @@
 
 ## Tests
 - pytest -svv
-- pytest -svv --integration (includes integration tests)
+- python manage.py test -- --integration (includes integration tests)
 
 # Endpoints
 - /users: Return the list of all users

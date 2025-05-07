@@ -2,7 +2,7 @@ from src.application.entities.user import User
 from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseSuccess
 from src.application.services.user import user_list
-from src.infrastructure.repositories.user import UserMem
+from src.infrastructure.repositories.user_mem import UserMem
 
 users = [
     {
