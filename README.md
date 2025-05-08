@@ -19,6 +19,16 @@
 ### flask
 - make flask
 
+## production-ready system
+- make build-web
+- make prod-up
+- make prod-down
+
+### tests
+- http://localhost:8080/users?filter_age__lt=30
+- http://localhost:8080/users?filter_age__eq=30
+- http://localhost:8080/users?filter_age__gt=30
+
 ## Tests
 - make test
 

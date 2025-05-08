@@ -1,5 +1,6 @@
 import json
 import os
+import signal
 import subprocess
 import time
 from pathlib import Path
@@ -91,7 +92,7 @@ def cli():
 @cli.command()
 @click.argument("args", nargs=-1)
 def test(args):
-    os.environ["APPLICATION_CONFIG"] = "testing"
+    setenv("APPLICATION_CONFIG", "testing")
     configure_app(os.getenv("APPLICATION_CONFIG"))
 
     cmdline = docker_compose_cmdline("up -d")
@@ -113,6 +114,21 @@ def test(args):
 
     cmdline = docker_compose_cmdline("down")
     subprocess.call(cmdline)
+
+
+@cli.command(context_settings={"ignore_unknown_options": True})
+@click.argument("subcommand", nargs=-1, type=click.Path())
+def prod(subcommand):
+    setenv("APPLICATION_CONFIG", "production")
+    configure_app(os.getenv("APPLICATION_CONFIG"))
+
+    cmdline = docker_compose_cmdline() + list(subcommand)
+    try:
+        p = subprocess.Popen(cmdline)
+        p.wait()
+    except KeyboardInterrupt:
+        p.send_signal(signal.SIGINT)
+        p.wait()
 
 
 if __name__ == "__main__":
