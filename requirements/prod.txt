@@ -1,3 +1,4 @@
 Flask==3.1.0
 SQLAlchemy==2.0.40
 psycopg2==2.9.10
+pymongo==4.12.1

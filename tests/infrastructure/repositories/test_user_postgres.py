@@ -3,24 +3,20 @@ from uuid import UUID
 import pytest
 
 from src.infrastructure.repositories import postgresrepo
-from src.infrastructure.repositories.postgres_objects import UserRelation
 
 pytestmark = pytest.mark.integration
 
 
-def test_query_user_relation(pg_session):
-    assert len(pg_session.query(UserRelation).all()) == 4
-
-
-def test_repository_list_without_parameters(app_configuration, pg_test_data):
+def test_repository_list_without_parameters(app_configuration, pg_session, pg_test_data):
     repo = postgresrepo.PostgresRepo(app_configuration)
 
     repo_users = repo.get()
 
+    assert len(repo_users) == 4
     assert set([r.id for r in repo_users]) == set([UUID(r["id"]) for r in pg_test_data])
 
 
-def test_repository_list_with_id_equal_filter(app_configuration):
+def test_repository_list_with_id_equal_filter(app_configuration, pg_session, pg_test_data):
     repo = postgresrepo.PostgresRepo(app_configuration)
 
     repo_users = repo.get(filters={"age__eq": 30})
@@ -29,7 +25,7 @@ def test_repository_list_with_id_equal_filter(app_configuration):
     assert repo_users[0].id == UUID("fe2c3195-aeff-487a-a08f-e0bdc0ec6e9a")
 
 
-def test_repository_list_with_age_less_than_filter(app_configuration):
+def test_repository_list_with_age_less_than_filter(app_configuration, pg_session, pg_test_data):
     repo = postgresrepo.PostgresRepo(app_configuration)
 
     repo_users = repo.get(filters={"age__lt": 40})
@@ -41,9 +37,7 @@ def test_repository_list_with_age_less_than_filter(app_configuration):
     }
 
 
-def test_repository_list_with_age_greater_than_filter(
-    app_configuration,
-):
+def test_repository_list_with_age_greater_than_filter(app_configuration, pg_session, pg_test_data):
     repo = postgresrepo.PostgresRepo(app_configuration)
 
     repo_users = repo.get(filters={"age__gt": 30})
@@ -55,7 +49,7 @@ def test_repository_list_with_age_greater_than_filter(
     }
 
 
-def test_repository_list_with_age_between_filter(app_configuration):
+def test_repository_list_with_age_between_filter(app_configuration, pg_session, pg_test_data):
     repo = postgresrepo.PostgresRepo(app_configuration)
 
     repo_users = repo.get(filters={"age__lt": 45, "age__gt": 35})

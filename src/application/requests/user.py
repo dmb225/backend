@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Optional
+from typing import Any, Optional
 
 
 class UserListInvalidRequest:
@@ -17,7 +17,7 @@ class UserListInvalidRequest:
 
 
 class UserListValidRequest:
-    def __init__(self, filters: Optional[Mapping[str, str]] = None):
+    def __init__(self, filters: Optional[Mapping[str, Any]] = None):
         self.filters = filters
 
     def __bool__(self) -> bool:
@@ -25,7 +25,7 @@ class UserListValidRequest:
 
 
 def build_user_list_request(
-    filters: Optional[Mapping[str, str]] = None,
+    filters: Optional[Mapping[str, Any]] = None,
 ) -> UserListValidRequest | UserListInvalidRequest:
     accepted_filters = ("age__eq", "age__gt", "age__lt")
     invalid_req = UserListInvalidRequest()
