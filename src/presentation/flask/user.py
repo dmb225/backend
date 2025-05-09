@@ -1,4 +1,5 @@
 import json
+import os
 
 from flask import Blueprint, Response, request
 
@@ -6,7 +7,7 @@ from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseTypes
 from src.application.serializers.user import UserJsonEncoder
 from src.application.services.user import user_list
-from src.infrastructure.repositories.user_mem import UserMem
+from src.infrastructure.repositories.postgresrepo import PostgresRepo
 
 blueprint = Blueprint("user", __name__)
 
@@ -17,29 +18,13 @@ STATUS_CODES = {
     ResponseTypes.SYSTEM_ERROR: 500,
 }
 
-DATA = [
-    {
-        "id": "f853578c-fc0f-4e65-81b8-566c5dffa35a",
-        "name": "user1",
-        "age": 20,
-    },
-    {
-        "id": "fe2c3195-aeff-487a-a08f-e0bdc0ec6e9a",
-        "name": "user2",
-        "age": 25,
-    },
-    {
-        "id": "913694c6-435a-4366-ba0d-da5334a611b2",
-        "name": "user3",
-        "age": 30,
-    },
-    {
-        "id": "eed76e77-55c1-41ce-985d-ca49bf6c0585",
-        "name": "user4",
-        "age": 35,
-    },
-]
-
+POSTGRES_CONFIG = {
+    "POSTGRES_USER": os.environ["POSTGRES_USER"],
+    "POSTGRES_PASSWORD": os.environ["POSTGRES_PASSWORD"],
+    "POSTGRES_HOSTNAME": os.environ["POSTGRES_HOSTNAME"],
+    "POSTGRES_PORT": os.environ["POSTGRES_PORT"],
+    "APPLICATION_DB": os.environ["APPLICATION_DB"],
+}
 
 @blueprint.route("/users", methods=["GET"])
 def users() -> Response:
@@ -53,7 +38,7 @@ def users() -> Response:
 
     request_object = build_user_list_request(filters=qrystr_params["filters"])
 
-    repo = UserMem(DATA)
+    repo = PostgresRepo(POSTGRES_CONFIG)
     response = user_list(repo, request_object)
 
     return Response(

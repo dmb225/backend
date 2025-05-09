@@ -20,8 +20,20 @@
 - make flask
 
 ## production-ready system
+
+### Build
 - make build-web
+
+### Init postgres
+- make init-postgres
+
+### Run prod
 - make prod-up
+
+### Run psql
+- make prod-psql
+
+### Stop prod
 - make prod-down
 
 ### tests

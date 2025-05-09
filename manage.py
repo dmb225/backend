@@ -118,7 +118,7 @@ def test(args):
 
 @cli.command(context_settings={"ignore_unknown_options": True})
 @click.argument("subcommand", nargs=-1, type=click.Path())
-def prod(subcommand):
+def compose(subcommand):
     setenv("APPLICATION_CONFIG", "production")
     configure_app(os.getenv("APPLICATION_CONFIG"))
 
@@ -129,6 +129,22 @@ def prod(subcommand):
     except KeyboardInterrupt:
         p.send_signal(signal.SIGINT)
         p.wait()
+
+
+@cli.command()
+def init_postgres():
+    setenv("APPLICATION_CONFIG", "production")
+    configure_app(os.getenv("APPLICATION_CONFIG"))
+
+    try:
+        run_sql([f"CREATE DATABASE {os.getenv('APPLICATION_DB')}"])
+    except psycopg2.errors.DuplicateDatabase:
+        print(
+            (
+                f"The database {os.getenv('APPLICATION_DB')} already",
+                "exists and will not be recreated",
+            )
+        )
 
 
 if __name__ == "__main__":
