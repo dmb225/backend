@@ -13,7 +13,14 @@ cli:
 
 # Run Flask app
 flask:
-	FLASK_APP=src/presentation/wsgi.py FLASK_CONFIG=development flask run -h 0.0.0.0
+	POSTGRES_USER=postgres \
+	POSTGRES_PASSWORD=postgres \
+	POSTGRES_HOSTNAME=localhost \
+	POSTGRES_PORT=5432 \
+	APPLICATION_DB=application \
+	FLASK_APP=src/presentation/wsgi.py \
+	FLASK_CONFIG=development \
+	flask run -h 0.0.0.0
 
 # Init postgres database
 init-postgres:
@@ -29,7 +36,23 @@ prod-up:
 
 # Run psql
 prod-psql:
-	python manage.py compose exec db psql -U postgres
+	python manage.py compose exec db psql -U postgres -d application
+
+# Autogenerate migrations
+alembic-generate:
+	POSTGRES_USER=postgres\
+	POSTGRES_PASSWORD=postgres\
+	POSTGRES_HOSTNAME=localhost\
+	APPLICATION_DB=application\
+	alembic revision --autogenerate -m "Initial"
+
+# Apply migrations
+alembic-upgrade:
+	POSTGRES_USER=postgres\
+  	POSTGRES_PASSWORD=postgres\
+  	POSTGRES_HOSTNAME=localhost\
+  	APPLICATION_DB=application\
+  	alembic upgrade head
 
 # Stop production system
 prod-down:
