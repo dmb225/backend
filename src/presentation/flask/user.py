@@ -8,9 +8,9 @@ from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseTypes
 from src.application.serializers.user import UserJsonEncoder
 from src.application.services.user import user_list
-from src.presentation.flask.data import DATA
-from src.infrastructure.repositories.user_mem import UserMem
 from src.infrastructure.repositories.postgresrepo import PostgresRepo
+from src.infrastructure.repositories.user_mem import UserMem
+from src.presentation.flask.data import DATA
 
 blueprint = Blueprint("user", __name__)
 
