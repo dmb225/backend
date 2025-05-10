@@ -3,10 +3,13 @@ import os
 
 from flask import Blueprint, Response, request
 
+from src.application.interfaces.user_repo import UserRepo
 from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseTypes
 from src.application.serializers.user import UserJsonEncoder
 from src.application.services.user import user_list
+from src.presentation.flask.data import DATA
+from src.infrastructure.repositories.user_mem import UserMem
 from src.infrastructure.repositories.postgresrepo import PostgresRepo
 
 blueprint = Blueprint("user", __name__)
@@ -26,6 +29,13 @@ POSTGRES_CONFIG = {
     "APPLICATION_DB": os.environ["APPLICATION_DB"],
 }
 
+
+def get_repository() -> UserRepo:
+    if os.environ.get("FLASK_CONFIG", "development") == "production":
+        return PostgresRepo(POSTGRES_CONFIG)
+    return UserMem(DATA)
+
+
 @blueprint.route("/users", methods=["GET"])
 def users() -> Response:
     qrystr_params: dict[str, dict[str, str]] = {
@@ -38,7 +48,7 @@ def users() -> Response:
 
     request_object = build_user_list_request(filters=qrystr_params["filters"])
 
-    repo = PostgresRepo(POSTGRES_CONFIG)
+    repo = get_repository()
     response = user_list(repo, request_object)
 
     return Response(
