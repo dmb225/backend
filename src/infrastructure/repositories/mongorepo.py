@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any
 from uuid import UUID
 
 from pymongo.mongo_client import MongoClient
@@ -19,7 +20,7 @@ class MongoRepo:
 
         self.db = client[configuration["APPLICATION_DB"]]
 
-    def get(self, filters: Optional[Mapping[str, Any]] = None) -> list[User]:
+    def get(self, filters: Mapping[str, Any] | None = None) -> list[User]:
         collection = self.db.users
 
         if filters is None:

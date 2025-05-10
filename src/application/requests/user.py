@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, Optional
+from typing import Any
 
 
 class UserListInvalidRequest:
@@ -17,7 +17,7 @@ class UserListInvalidRequest:
 
 
 class UserListValidRequest:
-    def __init__(self, filters: Optional[Mapping[str, Any]] = None):
+    def __init__(self, filters: Mapping[str, Any] | None = None):
         self.filters = filters
 
     def __bool__(self) -> bool:
@@ -25,7 +25,7 @@ class UserListValidRequest:
 
 
 def build_user_list_request(
-    filters: Optional[Mapping[str, Any]] = None,
+    filters: Mapping[str, Any] | None = None,
 ) -> UserListValidRequest | UserListInvalidRequest:
     accepted_filters = ("age__eq", "age__gt", "age__lt")
     invalid_req = UserListInvalidRequest()
@@ -35,7 +35,7 @@ def build_user_list_request(
             invalid_req.add_error("filters", "Is not iterable")
             return invalid_req
 
-        for key in filters.keys():
+        for key in filters:
             if key not in accepted_filters:
                 invalid_req.add_error("filters", f"Key {key} cannot be used")
 

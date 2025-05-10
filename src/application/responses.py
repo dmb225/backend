@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 
 class ResponseTypes:
@@ -27,7 +27,7 @@ class ResponseFailure:
 
 
 class ResponseSuccess:
-    def __init__(self, value: Optional[list[Any]] = None):
+    def __init__(self, value: list[Any] | None = None):
         self.type = ResponseTypes.SUCCESS
         self.value = value
 

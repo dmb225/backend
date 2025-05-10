@@ -1,4 +1,5 @@
-from typing import Any, Mapping, Optional, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any
 from uuid import UUID
 
 from sqlalchemy import create_engine
@@ -22,7 +23,7 @@ class PostgresRepo(UserRepo):
         self.engine = create_engine(connection_string)
         Base.metadata.create_all(self.engine)
 
-    def get(self, filters: Optional[Mapping[str, Any]] = None) -> list[User]:
+    def get(self, filters: Mapping[str, Any] | None = None) -> list[User]:
         DBSession = sessionmaker(bind=self.engine)
         session = DBSession()
 

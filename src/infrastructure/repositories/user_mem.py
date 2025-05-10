@@ -1,5 +1,5 @@
-from collections.abc import Mapping
-from typing import Any, Iterable, Optional
+from collections.abc import Iterable, Mapping
+from typing import Any
 
 from src.application.entities.user import User
 from src.application.interfaces.user_repo import UserRepo
@@ -9,7 +9,7 @@ class UserMem(UserRepo):
     def __init__(self, data: Iterable[dict[str, Any]]) -> None:
         self.data = data
 
-    def get(self, filters: Optional[Mapping[str, Any]] = None) -> list[User]:
+    def get(self, filters: Mapping[str, Any] | None = None) -> list[User]:
         result = [User.from_dict(i) for i in self.data]
 
         if filters is None:

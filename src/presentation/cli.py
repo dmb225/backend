@@ -1,8 +1,14 @@
+import logging
+
 from src.application.entities.user import User
 from src.application.requests.user import build_user_list_request
 from src.application.responses import ResponseSuccess
 from src.application.services.user import user_list
 from src.infrastructure.repositories.user_mem import UserMem
+
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(level=logging.INFO)
 
 users = [
     {
@@ -36,4 +42,4 @@ assert isinstance(response.value, list)
 for user in response.value:
     assert isinstance(user, User)
 
-print([user.to_dict() for user in response.value])
+logger.info([user.to_dict() for user in response.value])
