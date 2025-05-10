@@ -22,6 +22,10 @@ flask:
 	FLASK_CONFIG=development \
 	flask run -h 0.0.0.0
 
+# Run fastapi app
+fastapi:
+	fastapi dev src/presentation/fastapi/main.py
+
 # Init postgres database
 init-postgres:
 	python manage.py init-postgres

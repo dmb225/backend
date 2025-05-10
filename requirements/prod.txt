@@ -4,3 +4,4 @@ psycopg2==2.9.10
 pymongo==4.12.1
 gunicorn==23.0.0
 alembic==1.15.2
+fastapi[standard]== 0.115.12

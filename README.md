@@ -9,35 +9,18 @@
 - source venv/bin/activate
 - make install
 
-# Run
-
-## Command line interface
-- make cli
-
-## Web server gateway inferface
-
-### Flask
-- make flask
-
-## Production-ready system
-
-### Build
-- make build-web
-
-### Init postgres
-- make init-postgres
-
-### Run prod
-- make prod-up
-
-### Run psql
-- make prod-psql
-
-### Stop prod
-- make prod-down
-
-## Tests
+# Development commands
 - make test
+- make cli
+- make flask
+- make fastapi
+
+# Production commands
+- make build-web
+- make init-postgres
+- make prod-up
+- make prod-psql
+- make prod-down
 
 # Endpoints
 - /users: Return the list of all users
