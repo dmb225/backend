@@ -37,3 +37,4 @@ select = [
     "T201",  # flake8-print
     "UP",    # pyupgrade
 ]
+ignore = ["B008"]
