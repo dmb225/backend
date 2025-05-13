@@ -41,6 +41,13 @@ def setup_logging() -> None:
         "root": {
             "handlers": ["console", "file", "http"],
             "level": LOG_LEVEL,
+        },
+        "loggers": {
+            "watchfiles.main": {
+                "level": "WARNING",
+                "handlers": ["console", "file", "http"],
+                "propagate": False
+            }
         }
     }
 
