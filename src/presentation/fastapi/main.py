@@ -1,3 +1,4 @@
+import logging
 from collections.abc import Iterator
 from typing import Annotated, Any
 
@@ -5,11 +6,15 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
+from src.logging_config import setup_logging
 from src.presentation.fastapi import crud, schemas
 from src.presentation.fastapi.database import SessionLocal
 
-app = FastAPI()
+setup_logging()
 
+logger = logging.getLogger(__name__)
+app = FastAPI()
+logger.info("FastAPI app initialization..")
 
 def get_db() -> Iterator[Session]:
     db = SessionLocal()

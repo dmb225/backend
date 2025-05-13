@@ -1,7 +1,7 @@
 import pytest
 
 from manage import read_json_configuration
-from src.presentation.flask.app import create_app
+from src.presentation.flask.main import create_app
 
 
 @pytest.fixture

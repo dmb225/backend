@@ -21,9 +21,12 @@ services:
       POSTGRES_HOSTNAME: "db"
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_PORT: ${POSTGRES_PORT}
-    command: gunicorn -w 4 -b 0.0.0.0:5000 src.presentation.wsgi:app
+      LOG_LEVEL: ${LOG_LEVEL}
+      LOG_FILE: ${LOG_FILE}
+    command: gunicorn -w 4 -b 0.0.0.0:5000 src.presentation.flask.main:app
     volumes:
       - ${PWD}:/opt/code
+      - ${PWD}/logs:/var/log
   nginx:
     image: nginx
     volumes:

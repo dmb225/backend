@@ -17,7 +17,10 @@ test:
 
 # Run CLI
 cli:
-	PYTHONPATH=. python src/presentation/cli.py
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./cli.log \
+	python src/presentation/cli/main.py
 
 # Run Flask app
 flask:
@@ -26,12 +29,16 @@ flask:
 	POSTGRES_HOSTNAME=localhost \
 	POSTGRES_PORT=5433 \
 	APPLICATION_DB=application \
-	FLASK_APP=src/presentation/wsgi.py \
+	FLASK_APP=src/presentation/flask/main.py \
 	FLASK_CONFIG=development \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./flask.log \
 	flask run -h 0.0.0.0
 
 # Run fastapi app
 fastapi:
+	LOG_LEVEL=INFO \
+	LOG_FILE=./fastapi.log \
 	fastapi dev src/presentation/fastapi/main.py
 
 # Init postgres database

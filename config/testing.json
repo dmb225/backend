@@ -46,5 +46,13 @@
   {
     "name": "APPLICATION_DB",
     "value": "test"
+  },
+  {
+    "name": "LOG_LEVEL",
+    "value": "DEBUG"
+  },
+  {
+    "name": "LOG_FILE",
+    "value": "./app.log"
   }
 ]

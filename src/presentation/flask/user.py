@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 from flask import Blueprint, Response, request
@@ -11,6 +12,9 @@ from src.application.services.user import user_list
 from src.infrastructure.repositories.postgresrepo import PostgresRepo
 from src.infrastructure.repositories.user_mem import UserMem
 from src.presentation.flask.data import DATA
+
+logger = logging.getLogger(__name__)
+
 
 blueprint = Blueprint("user", __name__)
 
