@@ -7,6 +7,14 @@
 install:
 	pip install -r requirements/dev.txt && pre-commit install
 
+# Run linting
+lint:
+	ruff check src --fix && mypy src
+
+# Run tests (including integration tests)
+test:
+	python manage.py test -- --integration
+
 # Run CLI
 cli:
 	PYTHONPATH=. python src/presentation/cli.py
@@ -16,7 +24,7 @@ flask:
 	POSTGRES_USER=postgres \
 	POSTGRES_PASSWORD=postgres \
 	POSTGRES_HOSTNAME=localhost \
-	POSTGRES_PORT=5432 \
+	POSTGRES_PORT=5433 \
 	APPLICATION_DB=application \
 	FLASK_APP=src/presentation/wsgi.py \
 	FLASK_CONFIG=development \
@@ -61,7 +69,3 @@ alembic-upgrade:
 # Stop production system
 prod-down:
 	python manage.py compose down
-
-# Run integration tests using manage.py
-test:
-	python manage.py test -- --integration

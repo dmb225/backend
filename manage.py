@@ -123,6 +123,7 @@ def compose(subcommand):
     configure_app(os.getenv("APPLICATION_CONFIG"))
 
     cmdline = docker_compose_cmdline() + list(subcommand)
+    print(f"Running: {' '.join(cmdline)}")
     try:
         p = subprocess.Popen(cmdline)
         p.wait()

@@ -10,6 +10,7 @@
 - make install
 
 # Development commands
+- make lint
 - make test
 - make cli
 - make flask
@@ -22,8 +23,8 @@
 - make prod-psql
 - make prod-down
 
-# Endpoints
-- /users: Return the list of all users
-    - /users?filter_age__lt=30
-    - /users?filter_age__eq=30
-    - /users?filter_age__gt=30
+# APIs
+- Flask
+    - http://127.0.0.1:5000/docs
+- FastAPI
+    - http://127.0.0.1:8000/docs
