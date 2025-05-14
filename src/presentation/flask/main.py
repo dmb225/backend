@@ -1,16 +1,18 @@
+import logging
 import os
 
 from flask import Flask
 
+from src.logging_config import setup_logging
 from src.presentation.flask import root, user
 
 
 def create_app(config_name: str) -> Flask:
-    #setup_logging()
+    setup_logging()
 
-    #logger = logging.getLogger(__name__)
-    #logger.info("Creating Flask app...")
-    #logger.info(f"FLASK_CONFIG: {config_name}")
+    logger = logging.getLogger(__name__)
+    logger.info("Creating Flask app...")
+    logger.info(f"FLASK_CONFIG: {config_name}")
 
     config_module = f"src.application.config.{config_name.capitalize()}Config"
 
