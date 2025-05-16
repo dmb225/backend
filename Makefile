@@ -59,19 +59,19 @@ prod-psql:
 
 # Autogenerate migrations
 alembic-generate:
-	POSTGRES_USER=postgres\
-	POSTGRES_PASSWORD=postgres\
-	POSTGRES_HOSTNAME=localhost\
-	APPLICATION_DB=application\
+	POSTGRES_USER=postgres \
+	POSTGRES_PASSWORD=postgres \
+	POSTGRES_HOSTNAME=localhost \
+	APPLICATION_DB=application \
 	alembic revision --autogenerate -m "Initial"
 
 # Apply migrations
 alembic-upgrade:
-	POSTGRES_USER=postgres\
-  	POSTGRES_PASSWORD=postgres\
-  	POSTGRES_HOSTNAME=localhost\
-  	APPLICATION_DB=application\
-  	alembic upgrade head
+	POSTGRES_USER=postgres \
+	POSTGRES_PASSWORD=postgres \
+	POSTGRES_HOSTNAME=localhost \
+	APPLICATION_DB=application \
+	alembic upgrade head
 
 # Stop production system
 prod-down:

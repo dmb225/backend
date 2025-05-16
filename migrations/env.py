@@ -6,23 +6,21 @@ from sqlalchemy import pool
 
 from alembic import context
 
+def get_env_var(name: str) -> str:
+    value = os.environ.get(name)
+    if value is None:
+        raise RuntimeError(f"Environment variable '{name}' must be set")
+    return value
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
 
 section = config.config_ini_section
-config.set_section_option(
-    section, "POSTGRES_USER", os.environ.get("POSTGRES_USER")
-)
-config.set_section_option(
-    section, "POSTGRES_PASSWORD", os.environ.get("POSTGRES_PASSWORD")
-)
-config.set_section_option(
-    section, "POSTGRES_HOSTNAME", os.environ.get("POSTGRES_HOSTNAME")
-)
-config.set_section_option(
-    section, "APPLICATION_DB", os.environ.get("APPLICATION_DB")
-)
+config.set_section_option(section, "POSTGRES_USER", get_env_var("POSTGRES_USER"))
+config.set_section_option(section, "POSTGRES_PASSWORD", get_env_var("POSTGRES_PASSWORD"))
+config.set_section_option(section, "POSTGRES_HOSTNAME", get_env_var("POSTGRES_HOSTNAME"))
+config.set_section_option(section, "APPLICATION_DB", get_env_var("APPLICATION_DB"))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
