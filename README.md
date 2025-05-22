@@ -13,6 +13,7 @@
 - make lint
 - make test
 - make cli
+- make llama_index
 - make flask
 - make fastapi
 

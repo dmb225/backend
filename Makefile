@@ -22,6 +22,13 @@ cli:
 	LOG_FILE=./cli.log \
 	python src/presentation/cli/main.py
 
+# Run llama_index app
+llama_index:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/main.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
