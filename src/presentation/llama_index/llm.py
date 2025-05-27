@@ -30,7 +30,6 @@ def main() -> None:
         max_tokens=512,
         system_prompt="You are an AI assistant that provides concise answers based on user's query",
     )
-
     asyncio.run(get_response(llm))
 
 

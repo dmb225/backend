@@ -23,11 +23,19 @@ cli:
 	python src/presentation/cli/main.py
 
 # Run llama_index app
-llama_index:
+llm:
 	PYTHONPATH=. \
 	LOG_LEVEL=INFO \
 	LOG_FILE=./llama_index.log \
-	python src/presentation/llama_index/main.py
+	python src/presentation/llama_index/llm.py
+
+# Run llama_index app
+rag:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	streamlit run src/presentation/llama_index/rag.py
+
 
 # Run Flask app
 flask:
