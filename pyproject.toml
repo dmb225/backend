@@ -5,10 +5,17 @@ authors = [
     {name = "Malick Abu Imran", email="daomalick225@gmail.com"},
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pydantic>=2.0",
+    "mypy",
+]
+
 [tool.mypy]
 strict = true
 explicit_package_bases = true
 ignore_missing_imports = true
+plugins = "pydantic.mypy"
 
 [tool.pytest.ini_options]
 minversion = "2.0"

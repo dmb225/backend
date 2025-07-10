@@ -36,6 +36,13 @@ rag:
 	LOG_FILE=./llama_index.log \
 	streamlit run src/presentation/llama_index/rag.py
 
+# Run resume parser app
+resume_parser:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	streamlit run src/presentation/llama_index/resume_parser.py
+
 
 # Run Flask app
 flask:
