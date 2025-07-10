@@ -43,6 +43,12 @@ resume_parser:
 	LOG_FILE=./llama_index.log \
 	streamlit run src/presentation/llama_index/resume_parser.py
 
+# Run single agent
+single_agent:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/single_agent.py
 
 # Run Flask app
 flask:

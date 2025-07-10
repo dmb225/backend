@@ -9,16 +9,18 @@
 - source venv/bin/activate
 - make install
 
-# Development commands
+# Try applications
 - make lint
 - make test
 - make cli
 - make llm
 - make rag
+- make resume_parser
+- make single_agent
 - make flask
 - make fastapi
 
-# Production commands
+# Run production-ready flask app
 - make build-web
 - make init-postgres
 - make prod-up
