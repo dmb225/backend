@@ -17,6 +17,7 @@
 - make rag
 - make resume_parser
 - make single_agent
+- make multi_agent
 - make flask
 - make fastapi
 

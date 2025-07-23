@@ -50,6 +50,13 @@ single_agent:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/single_agent.py
 
+# Run multi-agent
+multi_agent:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/multi_agent.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
