@@ -93,6 +93,20 @@ llm_workflow:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/workflow.py
 
+# Run logger
+llama_logger:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/logger.py
+
+# Run tracer
+llama_tracer:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/tracer.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \

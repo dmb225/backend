@@ -22,6 +22,8 @@
 - make memory_aware_chat
 - make simple_agent_wo_memory
 - make simple_chat_wo_memory
+- make llama_logger
+- make llama_tracer
 - make llm_workflow
 - make flask
 - make fastapi
