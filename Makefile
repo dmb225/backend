@@ -71,6 +71,21 @@ memory_aware_chat:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/memory_aware_chat.py
 
+# Run simple agent without memory
+simple_agent_wo_memory:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/simple_agent_without_memory.py
+
+
+# Run simple chat without memory
+simple_chat_wo_memory:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/simple_chat_without_memory.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
