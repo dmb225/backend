@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 logger.info("FastAPI app initialization..")
 
+
 def get_db() -> Iterator[Session]:
     db = SessionLocal()
     try:

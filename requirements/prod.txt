@@ -12,3 +12,4 @@ ollama==0.4.8
 llama-index-embeddings-ollama==0.6.0
 streamlit==1.45.1
 pydantic==2.11
+pyvis==0.3.2

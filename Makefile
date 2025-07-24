@@ -86,6 +86,13 @@ simple_chat_wo_memory:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/simple_chat_without_memory.py
 
+# Run llm workflow
+llm_workflow:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/workflow.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \

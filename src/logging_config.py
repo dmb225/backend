@@ -5,6 +5,7 @@ import os
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 LOG_FILE = os.getenv("LOG_FILE", "app.log")
 
+
 def setup_logging() -> None:
     logging_config = {
         "version": 1,
@@ -14,8 +15,8 @@ def setup_logging() -> None:
                 "format": "[%(asctime)s] %(levelname)s in %(name)s: %(message)s",
             },
             "json": {
-                "format": '{"time": "%(asctime)s", "level": "%(levelname)s", "logger": "%(name)s", "message": "%(message)s"}', # noqa: E501
-            }
+                "format": '{"time": "%(asctime)s", "level": "%(levelname)s", "logger": "%(name)s", "message": "%(message)s"}',  # noqa: E501
+            },
         },
         "handlers": {
             "console": {
@@ -35,8 +36,8 @@ def setup_logging() -> None:
                 "url": os.getenv("LOG_REMOTE_URL", "/log"),
                 "method": "POST",
                 "formatter": "json",
-                "level": "ERROR"
-            }
+                "level": "ERROR",
+            },
         },
         "root": {
             "handlers": ["console", "file", "http"],
@@ -46,9 +47,9 @@ def setup_logging() -> None:
             "watchfiles.main": {
                 "level": "WARNING",
                 "handlers": ["console", "file", "http"],
-                "propagate": False
+                "propagate": False,
             }
-        }
+        },
     }
 
     logging.config.dictConfig(logging_config)

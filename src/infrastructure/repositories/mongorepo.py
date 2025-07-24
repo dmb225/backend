@@ -10,7 +10,7 @@ from src.application.entities.user import User
 
 class MongoRepo:
     def __init__(self, configuration: dict[str, str]) -> None:
-        client: MongoClient[Mapping[str, Any]]  = MongoClient(
+        client: MongoClient[Mapping[str, Any]] = MongoClient(
             host=configuration["MONGODB_HOSTNAME"],
             port=int(configuration["MONGODB_PORT"]),
             username=configuration["MONGODB_USER"],

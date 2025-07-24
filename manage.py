@@ -4,7 +4,6 @@ import signal
 import subprocess
 import time
 from pathlib import Path
-from typing import Optional
 
 import click
 import psycopg2
@@ -22,7 +21,7 @@ def read_json_configuration(config: str) -> dict[str, str]:
     with open(Path(APPLICATION_CONFIG_PATH) / f"{config}.json") as f:
         config_data = json.load(f)
 
-    config_data = dict((i["name"], i["value"]) for i in config_data)
+    config_data = {i["name"]: i["value"] for i in config_data}
 
     return config_data
 
@@ -32,10 +31,10 @@ def configure_app(config: dict[str, str]) -> None:
 
     for key, value in configuration.items():
         setenv(key, value)
-        print(f"Set environment variable: {key} = {value}")
+        print(f"Set environment variable: {key} = {value}")  # noqa: T201
 
 
-def docker_compose_cmdline(commands_string: Optional[str] = None) -> list[str]:
+def docker_compose_cmdline(commands_string: str | None = None) -> list[str]:
     config = os.getenv("APPLICATION_CONFIG")
     configure_app(config)
 
@@ -123,7 +122,7 @@ def compose(subcommand):
     configure_app(os.getenv("APPLICATION_CONFIG"))
 
     cmdline = docker_compose_cmdline() + list(subcommand)
-    print(f"Running: {' '.join(cmdline)}")
+    print(f"Running: {' '.join(cmdline)}")  # noqa: T201
     try:
         p = subprocess.Popen(cmdline)
         p.wait()
@@ -140,7 +139,7 @@ def init_postgres():
     try:
         run_sql([f"CREATE DATABASE {os.getenv('APPLICATION_DB')}"])
     except psycopg2.errors.DuplicateDatabase:
-        print(
+        print(  # noqa: T201
             (
                 f"The database {os.getenv('APPLICATION_DB')} already",
                 "exists and will not be recreated",
