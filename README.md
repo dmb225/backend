@@ -19,6 +19,7 @@
 - make single_agent
 - make multi_agent
 - make memory_aware_agent
+- make memory_aware_chat
 - make flask
 - make fastapi
 

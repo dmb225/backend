@@ -64,6 +64,13 @@ memory_aware_agent:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/memory_aware_agent.py
 
+# Run memory-aware-chat
+memory_aware_chat:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/memory_aware_chat.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \

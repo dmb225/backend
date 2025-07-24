@@ -109,6 +109,7 @@ def planner_logic(query: str) -> list[Task]:
                 tool_name="summarize_reviews",
                 tool_args={"product_name": "Galaxy Fit 2"},
                 input=query,
+                memory={},
             )
         )
 
