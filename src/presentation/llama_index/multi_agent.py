@@ -79,17 +79,37 @@ def planner_logic(query: str) -> list[Task]:
     tasks = []
 
     if "return" in query.lower():
-        tasks.append(Task(tool_name="process_return", tool_args={"item_id": "Galaxy Fit 2"}))
+        tasks.append(
+            Task(
+                tool_name="process_return",
+                tool_args={"item_id": "Galaxy Fit 2"},
+                input=query,
+                memory={},
+            )
+        )
 
     if "status" in query.lower():
-        tasks.append(Task(tool_name="fetch_order_status", tool_args={"order_id": "h45"}))
+        tasks.append(
+            Task(
+                tool_name="fetch_order_status",
+                tool_args={"order_id": "h45"},
+                input=query,
+                memory={},
+            )
+        )
 
     if "find" in query.lower() or "search" in query.lower():
-        tasks.append(Task(tool_name="search_products", tool_args={"price": 50}))
+        tasks.append(
+            Task(tool_name="search_products", tool_args={"price": 50}, input=query, memory={})
+        )
 
     if "summarize" in query.lower() or "summary" in query.lower():
         tasks.append(
-            Task(tool_name="summarize_reviews", tool_args={"product_name": "Galaxy Fit 2"})
+            Task(
+                tool_name="summarize_reviews",
+                tool_args={"product_name": "Galaxy Fit 2"},
+                input=query,
+            )
         )
 
     return tasks

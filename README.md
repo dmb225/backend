@@ -18,6 +18,7 @@
 - make resume_parser
 - make single_agent
 - make multi_agent
+- make memory_aware_agent
 - make flask
 - make fastapi
 

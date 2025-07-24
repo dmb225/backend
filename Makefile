@@ -57,6 +57,13 @@ multi_agent:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/multi_agent.py
 
+# Run memory-aware-agent
+memory_aware_agent:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/memory_aware_agent.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
