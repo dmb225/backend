@@ -107,6 +107,13 @@ llama_tracer:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/tracer.py
 
+# Run llamatrace
+llamatrace:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/llamatrace.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \

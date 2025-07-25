@@ -13,3 +13,5 @@ llama-index-embeddings-ollama==0.6.0
 streamlit==1.45.1
 pydantic==2.11
 pyvis==0.3.2
+llama-index-callbacks-arize-phoenix==0.5.1
+arize-phoenix==11.10.1
