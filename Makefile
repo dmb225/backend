@@ -121,6 +121,13 @@ doc_explorer:
 	LOG_FILE=./llama_index.log \
 	streamlit run src/presentation/llama_index/document_explorer.py
 
+# Run job application optimizer
+job_application_optimizer:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	streamlit run src/presentation/llama_index/job_application_optimizer.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
