@@ -128,6 +128,13 @@ job_application_optimizer:
 	LOG_FILE=./llama_index.log \
 	streamlit run src/presentation/llama_index/job_application_optimizer.py
 
+# Run lesson plan generator
+lesson_plan_generator:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	python src/presentation/llama_index/lesson_plan_generator.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \

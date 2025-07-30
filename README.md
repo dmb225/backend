@@ -28,6 +28,7 @@
 - make llm_workflow
 - make doc_explorer
 - make job_application_optimizer
+- make lesson_plan_generator
 - make flask
 - make fastapi
 
