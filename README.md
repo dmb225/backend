@@ -26,6 +26,7 @@
 - make llama_tracer
 - make llamatrace
 - make llm_workflow
+- make doc_explorer
 - make flask
 - make fastapi
 

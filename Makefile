@@ -114,6 +114,13 @@ llamatrace:
 	LOG_FILE=./llama_index.log \
 	python src/presentation/llama_index/llamatrace.py
 
+# Run document explorer
+doc_explorer:
+	PYTHONPATH=. \
+	LOG_LEVEL=INFO \
+	LOG_FILE=./llama_index.log \
+	streamlit run src/presentation/llama_index/document_explorer.py
+
 # Run Flask app
 flask:
 	POSTGRES_USER=postgres \
